@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fix Rwanda - Complete IT Solutions & Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#FF6B6B',
+                        accent: '#4ECDC4',
+                        whatsapp: '#25D366',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .service-card:hover {
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-scroll {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .dark .navbar-scroll {
+            background: rgba(24, 24, 24, 0.95);
+        }
+        
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-bubble {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .whatsapp-float {
+            animation: pulse 2s infinite;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 10px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #999;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        .form-input {
+            font-size: 16px; /* Prevent zoom on mobile */
+        }
+        
+        .chat-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .chat-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 2px;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-primary">
+                    Smart Fix Rwanda
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link hover:text-primary transition-colors" data-translate="nav.home">Home</a>
+                    <a href="#about" class="nav-link hover:text-primary transition-colors" data-translate="nav.about">About</a>
+                    <a href="#services" class="nav-link hover:text-primary transition-colors" data-translate="nav.services">Services</a>
+                    <a href="#portfolio" class="nav-link hover:text-primary transition-colors" data-translate="nav.portfolio">Portfolio</a>
+                    <a href="#testimonials" class="nav-link hover:text-primary transition-colors" data-translate="nav.reviews">Reviews</a>
+                    <a href="#contact" class="nav-link hover:text-primary transition-colors" data-translate="nav.contact">Contact</a>
+                    
+                    <!-- Language Selector -->
+                    <select id="language-selector" class="bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="en">English</option>
+                        <option value="rw">Kinyarwanda</option>
+                        <option value="fr">Français</option>
+                    </select>
+                    
+                    <!-- Auth Buttons -->
+                    <div id="auth-buttons" class="flex items-center space-x-3">
+                        <button id="login-btn" class="text-sm hover:text-primary transition-colors" data-translate="auth.login">Login</button>
+                        <button id="signup-btn" class="bg-primary hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition-colors" data-translate="auth.signup">Sign Up</button>
+                    </div>
+                    
+                    <!-- User Menu (Hidden by default) -->
+                    <div id="user-menu" class="hidden items-center space-x-3">
+                        <span id="user-name" class="text-sm font-medium"></span>
+                        <button id="logout-btn" class="text-sm text-red-500 hover:text-red-600 transition-colors" data-translate="auth.logout">Logout</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 hover:text-primary transition-colors" data-translate="nav.home">Home</a>
+                <a href="#about" class="block py-2 hover:text-primary transition-colors" data-translate="nav.about">About</a>
+                <a href="#services" class="block py-2 hover:text-primary transition-colors" data-translate="nav.services">Services</a>
+                <a href="#portfolio" class="block py-2 hover:text-primary transition-colors" data-translate="nav.portfolio">Portfolio</a>
+                <a href="#testimonials" class="block py-2 hover:text-primary transition-colors" data-translate="nav.reviews">Reviews</a>
+                <a href="#contact" class="block py-2 hover:text-primary transition-colors" data-translate="nav.contact">Contact</a>
+                
+                <!-- Mobile Language Selector -->
+                <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                    <select id="mobile-language-selector" class="w-full bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="en">English</option>
+                        <option value="rw">Kinyarwanda</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+                
+                <!-- Mobile Auth Buttons -->
+                <div id="mobile-auth-buttons" class="mt-4 space-y-2">
+                    <button id="mobile-login-btn" class="block w-full text-left py-2 hover:text-primary transition-colors" data-translate="auth.login">Login</button>
+                    <button id="mobile-signup-btn" class="block w-full bg-primary hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition-colors" data-translate="auth.signup">Sign Up</button>
+                </div>
+                
+                <!-- Mobile User Menu -->
+                <div id="mobile-user-menu" class="hidden mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                    <span id="mobile-user-name" class="block text-sm font-medium mb-2"></span>
+                    <button id="mobile-logout-btn" class="block text-sm text-red-500 hover:text-red-600 transition-colors" data-translate="auth.logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center text-white animate-fade-in-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Smart Fix
+                    <span class="text-yellow-400">Rwanda</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90" data-translate="hero.subtitle">
+                    Your trusted partner for complete IT solutions, computer supply, web development, and technical services in Rwanda.
+                </p>
+                <div class="space-x-4">
+                    <button onclick="scrollToSection('contact')" class="bg-primary hover:bg-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105" data-translate="hero.getStarted">
+                        Get Started
+                    </button>
+                    <button onclick="scrollToSection('about')" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300" data-translate="hero.learnMore">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-16 h-16 bg-yellow-400 rounded-full opacity-20 animate-bounce-slow"></div>
+        <div class="absolute bottom-20 right-10 w-24 h-24 bg-primary rounded-full opacity-20 animate-bounce-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-8 h-8 bg-accent rounded-full opacity-30 animate-bounce-slow" style="animation-delay: 2s;"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white" data-translate="about.title">About Smart Fix Rwanda</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="about.description">
+                    Leading IT solutions provider in Rwanda, specializing in computer supply, technical services, and innovative digital solutions for businesses and individuals.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-up">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white" data-translate="about.mission.title">Our Mission</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed" data-translate="about.mission.description">
+                        We are committed to providing reliable IT solutions, quality computer equipment, and professional technical services to help Rwanda's digital transformation. Our expert team ensures every client receives personalized service and cutting-edge technology solutions.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">1000+</div>
+                            <div class="text-gray-600 dark:text-gray-300" data-translate="about.stats.computers">Computers Supplied</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">95%</div>
+                            <div class="text-gray-600 dark:text-gray-300" data-translate="about.stats.satisfaction">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="w-64 h-64 mx-auto bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white text-6xl font-bold">
+                        SFR
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-translate="services.title">Our Services</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="services.description">
+                    From computer supply to web development, we offer comprehensive IT solutions tailored to meet all your technology needs.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">💻</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.computer.title">Computer Supply</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.computer.description">
+                        Quality computers, laptops, and accessories from trusted brands. We provide both new and refurbished systems with warranties.
+                    </p>
+                    <button onclick="openServiceModal('computer-supply')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+                
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">🔧</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.it.title">IT Services</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.it.description">
+                        Complete IT support including computer repair, maintenance, network setup, and technical consultation services.
+                    </p>
+                    <button onclick="openServiceModal('it-services')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+                
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">🌐</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.web.title">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.web.description">
+                        Professional websites and web applications built with modern technologies for optimal performance and user experience.
+                    </p>
+                    <button onclick="openServiceModal('web-development')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+                
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">📱</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.mobile.title">Mobile Apps</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.mobile.description">
+                        Native and cross-platform mobile applications that provide seamless user experiences across all devices.
+                    </p>
+                    <button onclick="openServiceModal('mobile-apps')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+                
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">☁️</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.cloud.title">Cloud Solutions</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.cloud.description">
+                        Scalable cloud infrastructure and services to ensure your applications run smoothly and securely.
+                    </p>
+                    <button onclick="openServiceModal('cloud-solutions')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+                
+                <div class="service-card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="text-primary text-4xl mb-6">🖥️</div>
+                    <h3 class="text-2xl font-bold mb-4" data-translate="services.system.title">System Installation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="services.system.description">
+                        Professional installation of operating systems, software, and hardware components with optimization.
+                    </p>
+                    <button onclick="openServiceModal('system-installation')" class="bg-primary hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors" data-translate="services.apply">
+                        Apply for Service
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-translate="portfolio.title">Our Portfolio</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="portfolio.description">
+                    Take a look at some of our recent projects and see how we've helped businesses and individuals with their IT needs.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-600"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="portfolio.project1.title">School Management System</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="portfolio.project1.description">Complete management system for a local school with student records and fee management.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">Web App</span>
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">PHP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-600"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="portfolio.project2.title">Business Network Setup</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="portfolio.project2.description">Complete network infrastructure for a 50-employee company with security and backup.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">Networking</span>
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">Security</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-red-600"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="portfolio.project3.title">E-commerce Website</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="portfolio.project3.description">Online store for local retailer with mobile money integration and inventory management.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">E-commerce</span>
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">Mobile Pay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-translate="testimonials.title">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="testimonials.description">
+                    Don't just take our word for it. Here's what our satisfied clients have to say about working with Smart Fix Rwanda.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">JB</div>
+                        <div>
+                            <h4 class="font-bold">Jean Baptiste</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="testimonials.client1.role">School Director</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic" data-translate="testimonials.client1.message">
+                        "Smart Fix Rwanda provided us with excellent computers and set up our entire school network. Their service is outstanding and very professional."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold mr-4">MU</div>
+                        <div>
+                            <h4 class="font-bold">Marie Uwimana</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="testimonials.client2.role">Business Owner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic" data-translate="testimonials.client2.message">
+                        "They built our company website and it's amazing! Our online sales have increased significantly. Very reliable team."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">PK</div>
+                        <div>
+                            <h4 class="font-bold">Paul Kagame</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="testimonials.client3.role">IT Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic" data-translate="testimonials.client3.message">
+                        "Best IT support in Kigali! They fixed our server issues quickly and provided great maintenance service. Highly recommended!"
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-translate="contact.title">Get In Touch</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="contact.description">
+                    Ready to start your next IT project? Let's discuss how Smart Fix Rwanda can help bring your technology needs to life.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6" data-translate="contact.info.title">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-translate="contact.email">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">smartfixsolution2024@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-translate="contact.phone">Phone</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+250 794 779 332</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-whatsapp rounded-full flex items-center justify-center text-white mr-4">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-translate="contact.whatsapp">WhatsApp</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+250 794 779 332</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-translate="contact.location">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Kigali, Rwanda</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Links -->
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4" data-translate="contact.followUs">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.instagram.com/_3rd.eye.rw_/" target="_blank" class="social-icon w-12 h-12 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full flex items-center justify-center text-white hover:shadow-lg">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://x.com/umu_kate" target="_blank" class="social-icon w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:shadow-lg">
+                                <i data-lucide="twitter" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://wa.me/250794779332" target="_blank" class="social-icon w-12 h-12 bg-whatsapp rounded-full flex items-center justify-center text-white hover:shadow-lg">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </a>
+                            <a href="mailto:smartfixsolution2024@gmail.com" class="social-icon w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:shadow-lg">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="contact-form" class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                    <div class="mb-6">
+                        <label for="name" class="block text-sm font-bold mb-2" data-translate="contact.form.name">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-bold mb-2" data-translate="contact.form.email">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                    </div>
+                    <div class="mb-6">
+                        <label for="service" class="block text-sm font-bold mb-2" data-translate="contact.form.service">Service Interested</label>
+                        <select id="service" name="service" class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                            <option value="" data-translate="contact.form.selectService">Select a service</option>
+                            <option value="computer-supply" data-translate="services.computer.title">Computer Supply</option>
+                            <option value="it-services" data-translate="services.it.title">IT Services</option>
+                            <option value="web-development" data-translate="services.web.title">Web Development</option>
+                            <option value="mobile-apps" data-translate="services.mobile.title">Mobile Apps</option>
+                            <option value="cloud-solutions" data-translate="services.cloud.title">Cloud Solutions</option>
+                            <option value="system-installation" data-translate="services.system.title">System Installation</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-bold mb-2" data-translate="contact.form.message">Project Details</label>
+                        <textarea id="message" name="message" rows="4" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-bold transition-colors duration-300" data-translate="contact.form.send">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary">Smart Fix Rwanda</h3>
+                    <p class="text-gray-300 mb-4" data-translate="footer.description">
+                        Your trusted partner for complete IT solutions, computer supply, and digital services in Rwanda.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/_3rd.eye.rw_/" target="_blank" class="social-icon w-10 h-10 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full flex items-center justify-center cursor-pointer hover:shadow-lg transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://x.com/umu_kate" target="_blank" class="social-icon w-10 h-10 bg-black rounded-full flex items-center justify-center cursor-pointer hover:shadow-lg transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://wa.me/250794779332" target="_blank" class="social-icon w-10 h-10 bg-whatsapp rounded-full flex items-center justify-center cursor-pointer hover:shadow-lg transition-all">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4" data-translate="footer.services">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors" data-translate="services.computer.title">Computer Supply</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-translate="services.it.title">IT Services</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-translate="services.web.title">Web Development</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-translate="services.mobile.title">Mobile Apps</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4" data-translate="footer.company">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#about" class="hover:text-primary transition-colors" data-translate="nav.about">About Us</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary transition-colors" data-translate="nav.portfolio">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-translate="footer.careers">Careers</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors" data-translate="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4" data-translate="footer.contactInfo">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i data-lucide="phone" class="w-4 h-4 inline mr-2"></i>+250 794 779 332</li>
+                        <li><i data-lucide="mail" class="w-4 h-4 inline mr-2"></i>smartfixsolution2024@gmail.com</li>
+                        <li><i data-lucide="map-pin" class="w-4 h-4 inline mr-2"></i>Kigali, Rwanda</li>
+                        <li><i data-lucide="message-circle" class="w-4 h-4 inline mr-2"></i>WhatsApp Support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300">
+                <p data-translate="footer.copyright">&copy; 2024 Smart Fix Rwanda. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div id="whatsapp-float" class="fixed bottom-6 right-6 z-40">
+        <button onclick="openWhatsAppChat()" class="bg-whatsapp hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-lg transition-all duration-300 whatsapp-float">
+            <i data-lucide="message-circle" class="w-8 h-8 mx-auto"></i>
+        </button>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="fixed bottom-24 right-6 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-2xl z-50 hidden">
+        <div class="bg-primary text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h3 class="font-bold" data-translate="chatbot.title">Smart Fix Assistant</h3>
+            <button onclick="closeChatbot()" class="text-white hover:text-gray-200">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <div id="chat-messages" class="chat-container p-4 space-y-3">
+            <div class="flex items-start space-x-2">
+                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                    <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg max-w-xs">
+                    <p class="text-sm" data-translate="chatbot.welcome">Hello! I'm your Smart Fix Rwanda assistant. How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-4 border-t border-gray-200 dark:border-gray-600">
+            <div class="flex space-x-2">
+                <input type="text" id="chat-input" placeholder="Type your message..." class="form-input flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white text-sm">
+                <button onclick="sendChatMessage()" class="bg-primary hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="modal-content bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold" data-translate="auth.login.title">Login</h2>
+                <button onclick="closeModal('login-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="auth.login.email">Email or Phone</label>
+                    <input type="text" id="login-email" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="auth.login.password">Password</label>
+                    <input type="password" id="login-password" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-bold transition-colors" data-translate="auth.login.submit">
+                    Login
+                </button>
+                <p class="text-center text-sm">
+                    <span data-translate="auth.login.noAccount">Don't have an account?</span>
+                    <button type="button" onclick="switchToSignup()" class="text-primary hover:underline ml-1" data-translate="auth.signup">Sign up</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="modal-content bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold" data-translate="auth.signup.title">Sign Up</h2>
+                <button onclick="closeModal('signup-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <form id="signup-form" class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-2" data-translate="auth.signup.firstName">First Name</label>
+                        <input type="text" id="signup-first-name" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2" data-translate="auth.signup.lastName">Last Name</label>
+                        <input type="text" id="signup-last-name" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="auth.signup.email">Email</label>
+                    <input type="email" id="signup-email" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="auth.signup.phone">Phone Number</label>
+                    <input type="tel" id="signup-phone" placeholder="+250..." required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="auth.signup.password">Password</label>
+                    <input type="password" id="signup-password" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-bold transition-colors" data-translate="auth.signup.submit">
+                    Create Account
+                </button>
+                <p class="text-center text-sm">
+                    <span data-translate="auth.signup.hasAccount">Already have an account?</span>
+                    <button type="button" onclick="switchToLogin()" class="text-primary hover:underline ml-1" data-translate="auth.login">Login</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Application Modal -->
+    <div id="service-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="modal-content bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold" data-translate="service.application.title">Apply for Service</h2>
+                <button onclick="closeModal('service-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <form id="service-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="service.application.service">Service Type</label>
+                    <input type="text" id="service-type" readonly class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="service.application.urgency">Urgency Level</label>
+                    <select id="service-urgency" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                        <option value="low" data-translate="service.urgency.low">Low - Within a week</option>
+                        <option value="medium" data-translate="service.urgency.medium">Medium - Within 3 days</option>
+                        <option value="high" data-translate="service.urgency.high">High - Within 24 hours</option>
+                        <option value="urgent" data-translate="service.urgency.urgent">Urgent - ASAP</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="service.application.budget">Budget Range (RWF)</label>
+                    <select id="service-budget" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                        <option value="under-100k">Under 100,000 RWF</option>
+                        <option value="100k-500k">100,000 - 500,000 RWF</option>
+                        <option value="500k-1m">500,000 - 1,000,000 RWF</option>
+                        <option value="over-1m">Over 1,000,000 RWF</option>
+                        <option value="discuss">Prefer to Discuss</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2" data-translate="service.application.details">Project Details</label>
+                    <textarea id="service-details" rows="4" required class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-bold transition-colors" data-translate="service.application.submit">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="modal-content bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 text-center">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check" class="w-8 h-8 text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4" id="success-title">Success!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6" id="success-message">Operation completed successfully.</p>
+            <button onclick="closeModal('success-modal')" class="bg-primary hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-bold transition-colors" data-translate="common.ok">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Global variables
+        let currentUser = null;
+        let currentLanguage = 'en';
+        
+        // Language translations
+        const translations = {
+            en: {
+                'nav.home': 'Home',
+                'nav.about': 'About',
+                'nav.services': 'Services',
+                'nav.portfolio': 'Portfolio',
+                'nav.reviews': 'Reviews',
+                'nav.contact': 'Contact',
+                'hero.subtitle': 'Your trusted partner for complete IT solutions, computer supply, web development, and technical services in Rwanda.',
+                'hero.getStarted': 'Get Started',
+                'hero.learnMore': 'Learn More',
+                'about.title': 'About Smart Fix Rwanda',
+                'about.description': 'Leading IT solutions provider in Rwanda, specializing in computer supply, technical services, and innovative digital solutions for businesses and individuals.',
+                'services.title': 'Our Services',
+                'services.description': 'From computer supply to web development, we offer comprehensive IT solutions tailored to meet all your technology needs.',
+                'services.apply': 'Apply for Service',
+                'auth.login': 'Login',
+                'auth.signup': 'Sign Up',
+                'auth.logout': 'Logout',
+                'chatbot.title': 'Smart Fix Assistant',
+                'chatbot.welcome': 'Hello! I\'m your Smart Fix Rwanda assistant. How can I help you today?',
+                'contact.followUs': 'Follow Us',
+                // Add more translations...
+            },
+            rw: {
+                'nav.home': 'Itangiriro',
+                'nav.about': 'Ibibacu',
+                'nav.services': 'Serivisi',
+                'nav.portfolio': 'Imirimo',
+                'nav.reviews': 'Ibitekerezo',
+                'nav.contact': 'Tubabarire',
+                'hero.subtitle': 'Umunyangavu wawe w\'icyizere mu bisubizo byose bya tekinoloji, gutanga ibikoresho bya mudasobwa, kurema imbuga n\'indi serivisi za tekinoloji mu Rwanda.',
+                'hero.getStarted': 'Tangira',
+                'hero.learnMore': 'Menya Byinshi',
+                'about.title': 'Ibibacu bya Smart Fix Rwanda',
+                'about.description': 'Ikigo cyambere mu gutanga ibisubizo bya tekinoloji mu Rwanda, cyihariye mu gutanga ibikoresho bya mudasobwa, serivisi za tekinoloji, n\'ibisubizo bishya bya digitale ku makampani n\'abantu.',
+                'services.title': 'Serivisi Zacu',
+                'services.description': 'Kuva ku gutanga ibikoresho bya mudasobwa kugeza ku kurema imbuga, dutanga ibisubizo byuzuye bya tekinoloji byakozwe kubicuza yawe.',
+                'services.apply': 'Saba Serivisi',
+                'auth.login': 'Injira',
+                'auth.signup': 'Iyandikishe',
+                'auth.logout': 'Sohoka',
+                'chatbot.title': 'Umufasha wa Smart Fix',
+                'chatbot.welcome': 'Muraho! Ndi umufasha wawe wa Smart Fix Rwanda. Ni gute nkugufasha uyu munsi?',
+                'contact.followUs': 'Dukurikire',
+                // Add more translations...
+            },
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.about': 'À Propos',
+                'nav.services': 'Services',
+                'nav.portfolio': 'Portfolio',
+                'nav.reviews': 'Avis',
+                'nav.contact': 'Contact',
+                'hero.subtitle': 'Votre partenaire de confiance pour des solutions informatiques complètes, fourniture d\'ordinateurs, développement web et services techniques au Rwanda.',
+                'hero.getStarted': 'Commencer',
+                'hero.learnMore': 'En Savoir Plus',
+                'about.title': 'À Propos de Smart Fix Rwanda',
+                'about.description': 'Fournisseur leader de solutions informatiques au Rwanda, spécialisé dans la fourniture d\'ordinateurs, les services techniques et les solutions numériques innovantes pour les entreprises et les particuliers.',
+                'services.title': 'Nos Services',
+                'services.description': 'De la fourniture d\'ordinateurs au développement web, nous offrons des solutions informatiques complètes adaptées à tous vos besoins technologiques.',
+                'services.apply': 'Demander un Service',
+                'auth.login': 'Connexion',
+                'auth.signup': 'S\'inscrire',
+                'auth.logout': 'Déconnexion',
+                'chatbot.title': 'Assistant Smart Fix',
+                'chatbot.welcome': 'Bonjour! Je suis votre assistant Smart Fix Rwanda. Comment puis-je vous aider aujourd\'hui?',
+                'contact.followUs': 'Suivez-nous',
+                // Add more translations...
+            }
+        };
+        
+        // Dark mode functionality
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Language functionality
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' && element.type === 'text') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+        
+        // Language selector events
+        document.getElementById('language-selector').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+            document.getElementById('mobile-language-selector').value = e.target.value;
+        });
+        
+        document.getElementById('mobile-language-selector').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+            document.getElementById('language-selector').value = e.target.value;
+        });
+
+        // Authentication functionality
+        function updateAuthUI() {
+            const authButtons = document.getElementById('auth-buttons');
+            const userMenu = document.getElementById('user-menu');
+            const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
+            const mobileUserMenu = document.getElementById('mobile-user-menu');
+            
+            if (currentUser) {
+                authButtons.classList.add('hidden');
+                userMenu.classList.remove('hidden');
+                userMenu.classList.add('flex');
+                mobileAuthButtons.classList.add('hidden');
+                mobileUserMenu.classList.remove('hidden');
+                document.getElementById('user-name').textContent = currentUser.firstName;
+                document.getElementById('mobile-user-name').textContent = currentUser.firstName;
+            } else {
+                authButtons.classList.remove('hidden');
+                userMenu.classList.add('hidden');
+                userMenu.classList.remove('flex');
+                mobileAuthButtons.classList.remove('hidden');
+                mobileUserMenu.classList.add('hidden');
+            }
+        }
+        
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function switchToSignup() {
+            closeModal('login-modal');
+            showModal('signup-modal');
+        }
+        
+        function switchToLogin() {
+            closeModal('signup-modal');
+            showModal('login-modal');
+        }
+        
+        // Service application function
+        function openServiceModal(serviceType) {
+            if (!currentUser) {
+                showModal('login-modal');
+                return;
+            }
+            
+            document.getElementById('service-type').value = serviceType.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+            showModal('service-modal');
+        }
+        
+        // Enhanced WhatsApp functionality with proper API integration
+        function openWhatsAppChat() {
+            const chatWidget = document.getElementById('chatbot-widget');
+            if (chatWidget.classList.contains('hidden')) {
+                chatWidget.classList.remove('hidden');
+            } else {
+                // Open WhatsApp directly with proper API format
+                const phone = '250794779332';
+                const message = encodeURIComponent('Hello Smart Fix Rwanda! I need help with IT services. I found your website and would like to know more about your services.');
+                
+                // Check if it's mobile device for app opening
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                if (isMobile) {
+                    // Try to open WhatsApp app first, then fallback to web
+                    window.open(`whatsapp://send?phone=${phone}&text=${message}`, '_blank');
+                    // Fallback to web version after a delay
+                    setTimeout(() => {
+                        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                    }, 2000);
+                } else {
+                    // Desktop - open WhatsApp Web
+                    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                }
+            }
+        }
+        
+        // Chatbot functionality
+        function closeChatbot() {
+            document.getElementById('chatbot-widget').classList.add('hidden');
+        }
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const response = generateBotResponse(message);
+                addChatMessage(response, 'bot');
+            }, 1000);
+        }
+        
+        function addChatMessage(message, sender) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-2 chat-bubble';
+            
+            if (sender === 'user') {
+                messageDiv.className += ' justify-end';
+                messageDiv.innerHTML = `
+                    <div class="bg-primary text-white p-3 rounded-lg max-w-xs">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg max-w-xs">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                `;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Re-initialize Lucide icons for new bot icon
+            if (sender === 'bot') {
+                lucide.createIcons();
+            }
+        }
+        
+        function generateBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            if (message.includes('price') || message.includes('cost') || message.includes('gura')) {
+                return 'Our prices vary depending on the service. For computer supply, we start from 200,000 RWF. For web development, starting from 500,000 RWF. Click the WhatsApp button to get a detailed quote!';
+            } else if (message.includes('computer') || message.includes('laptop') || message.includes('mudasobwa')) {
+                return 'We have a wide range of computers and laptops available. New systems start from 200,000 RWF and refurbished from 150,000 RWF. All come with warranty. What specifications do you need?';
+            } else if (message.includes('website') || message.includes('web') || message.includes('urubuga')) {
+                return 'We create professional websites starting from 500,000 RWF. This includes responsive design, SEO optimization, and 1 year support. Would you like to discuss your project via WhatsApp?';
+            } else if (message.includes('repair') || message.includes('fix') || message.includes('gusana')) {
+                return 'We offer computer repair services starting from 10,000 RWF for diagnosis. Most repairs are completed within 24-48 hours. What seems to be the problem with your device?';
+            } else if (message.includes('hello') || message.includes('hi') || message.includes('muraho')) {
+                return 'Hello! Welcome to Smart Fix Rwanda. I can help you with information about our services, pricing, or technical support. For immediate assistance, click the WhatsApp button to chat with our team!';
+            } else if (message.includes('location') || message.includes('where') || message.includes('hehe')) {
+                return 'We are located in Kigali, Rwanda. You can reach us at +250 794 779 332 or send us a WhatsApp message. Would you like directions or prefer we come to you?';
+            } else if (message.includes('whatsapp') || message.includes('contact')) {
+                return 'You can contact us directly via WhatsApp at +250 794 779 332. Click the green WhatsApp button to start chatting with our team right away!';
+            } else {
+                return 'Thank you for your question! For detailed assistance, please click the WhatsApp button below to chat with our team directly. We\'re available to help you!';
+            }
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auth button event listeners
+            document.getElementById('login-btn').addEventListener('click', () => showModal('login-modal'));
+            document.getElementById('signup-btn').addEventListener('click', () => showModal('signup-modal'));
+            document.getElementById('mobile-login-btn').addEventListener('click', () => showModal('login-modal'));
+            document.getElementById('mobile-signup-btn').addEventListener('click', () => showModal('signup-modal'));
+            
+            // Logout event listeners
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                currentUser = null;
+                updateAuthUI();
+                showSuccessMessage('Logged out successfully!');
+            });
+            document.getElementById('mobile-logout-btn').addEventListener('click', () => {
+                currentUser = null;
+                updateAuthUI();
+                showSuccessMessage('Logged out successfully!');
+            });
+            
+            // Chat input enter key
+            document.getElementById('chat-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+            
+            // Form submissions
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                // Simulate login
+                currentUser = {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: email
+                };
+                
+                updateAuthUI();
+                closeModal('login-modal');
+                showSuccessMessage('Welcome back! You are now logged in.');
+            });
+            
+            document.getElementById('signup-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const firstName = document.getElementById('signup-first-name').value;
+                const lastName = document.getElementById('signup-last-name').value;
+                const email = document.getElementById('signup-email').value;
+                
+                // Simulate signup
+                currentUser = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email
+                };
+                
+                updateAuthUI();
+                closeModal('signup-modal');
+                showSuccessMessage('Account created successfully! Welcome to Smart Fix Rwanda.');
+            });
+            
+            document.getElementById('service-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                closeModal('service-modal');
+                showSuccessMessage('Service application submitted! We will contact you via WhatsApp within 2 hours.');
+                
+                // Send WhatsApp notification automatically
+                const phone = '250794779332';
+                const serviceType = document.getElementById('service-type').value;
+                const urgency = document.getElementById('service-urgency').value;
+                const budget = document.getElementById('service-budget').value;
+                const details = document.getElementById('service-details').value;
+                
+                const message = encodeURIComponent(`New Service Application:
+Service: ${serviceType}
+Urgency: ${urgency}
+Budget: ${budget}
+Client: ${currentUser.firstName}
+Details: ${details}`);
+                
+                // Auto-open WhatsApp with service details
+                setTimeout(() => {
+                    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                }, 2000);
+            });
+            
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                
+                showSuccessMessage('Message sent successfully! We will contact you soon via WhatsApp.');
+                
+                // Auto-send to WhatsApp
+                const phone = '250794779332';
+                const whatsappMessage = encodeURIComponent(`Contact Form Submission:
+Name: ${name}
+Email: ${email}
+Service Interest: ${service}
+Message: ${message}`);
+                
+                setTimeout(() => {
+                    window.open(`https://wa.me/${phone}?text=${whatsappMessage}`, '_blank');
+                }, 2000);
+                
+                this.reset();
+            });
+            
+            // Initialize
+            updateAuthUI();
+            changeLanguage('en');
+        });
+        
+        // Utility functions
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        function showSuccessMessage(message) {
+            document.getElementById('success-message').textContent = message;
+            showModal('success-modal');
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                scrollToSection(sectionId);
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+        
+        // Scroll to top functionality
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                if (!document.getElementById('scroll-top')) {
+                    const scrollTop = document.createElement('button');
+                    scrollTop.id = 'scroll-top';
+                    scrollTop.className = 'fixed bottom-24 left-6 bg-primary hover:bg-purple-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 z-40';
+                    scrollTop.innerHTML = '↑';
+                    scrollTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+                    document.body.appendChild(scrollTop);
+                }
+            } else {
+                const scrollTop = document.getElementById('scroll-top');
+                if (scrollTop) {
+                    scrollTop.remove();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
